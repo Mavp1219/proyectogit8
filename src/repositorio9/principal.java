@@ -61,14 +61,17 @@ public class principal extends javax.swing.JFrame {
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setText("CONSUMO DE LA LLAMADA");
-        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 180, 30));
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 190, 30));
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("DIGA SU SALDO INICAL :");
-        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 140, 30));
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 150, 30));
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("DIGA SU SALDO FINAL :");
-        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 130, 30));
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 140, 30));
 
         txtvalor1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,13 +81,19 @@ public class principal extends javax.swing.JFrame {
         jPanel3.add(txtvalor1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 160, 30));
         jPanel3.add(txtvalor2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 160, 30));
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel4.setText("CONSUMO DE LA LLAMADA :");
-        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 214, 140, 30));
+        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 160, 30));
 
         txtresultado.setEditable(false);
-        jPanel3.add(txtresultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, 160, 30));
+        jPanel3.add(txtresultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 160, 30));
 
         cmdcalcular.setText("CALCULAR");
+        cmdcalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdcalcularActionPerformed(evt);
+            }
+        });
         jPanel3.add(cmdcalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 303, 90, 30));
 
         cmdborrar.setText("BORRAR");
@@ -105,8 +114,28 @@ public class principal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtvalor1ActionPerformed
 
     private void cmdborrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdborrarActionPerformed
-        // TODO add your handling code here:
+        txtvalor1.setText("");
+        txtvalor2.setText("");
+        txtresultado.setText("");
+        
+        txtvalor1.requestFocusInWindow();
+        
     }//GEN-LAST:event_cmdborrarActionPerformed
+
+    private void cmdcalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdcalcularActionPerformed
+        double v1, v2, op, op2, t;
+        
+        v1 = Double.parseDouble(txtvalor1.getText());
+        v2 = Double.parseDouble(txtvalor2.getText());
+        
+        op = v1 - v2;
+        
+        op2 = op * 1.20;
+        
+        txtresultado.setText(String.valueOf(op2));
+        
+        
+    }//GEN-LAST:event_cmdcalcularActionPerformed
 
     /**
      * @param args the command line arguments
