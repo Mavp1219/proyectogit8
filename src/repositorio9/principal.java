@@ -5,6 +5,8 @@
  */
 package repositorio9;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author user
@@ -78,7 +80,18 @@ public class principal extends javax.swing.JFrame {
                 txtvalor1ActionPerformed(evt);
             }
         });
+        txtvalor1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtvalor1KeyTyped(evt);
+            }
+        });
         jPanel3.add(txtvalor1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 160, 30));
+
+        txtvalor2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtvalor2KeyTyped(evt);
+            }
+        });
         jPanel3.add(txtvalor2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 160, 30));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -94,7 +107,7 @@ public class principal extends javax.swing.JFrame {
                 cmdcalcularActionPerformed(evt);
             }
         });
-        jPanel3.add(cmdcalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 303, 90, 30));
+        jPanel3.add(cmdcalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 303, 110, 30));
 
         cmdborrar.setText("BORRAR");
         cmdborrar.addActionListener(new java.awt.event.ActionListener() {
@@ -102,7 +115,7 @@ public class principal extends javax.swing.JFrame {
                 cmdborrarActionPerformed(evt);
             }
         });
-        jPanel3.add(cmdborrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 303, 80, 30));
+        jPanel3.add(cmdborrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 303, 110, 30));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 370));
 
@@ -117,25 +130,62 @@ public class principal extends javax.swing.JFrame {
         txtvalor1.setText("");
         txtvalor2.setText("");
         txtresultado.setText("");
-        
+
         txtvalor1.requestFocusInWindow();
-        
+
     }//GEN-LAST:event_cmdborrarActionPerformed
 
     private void cmdcalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdcalcularActionPerformed
         double v1, v2, op, op2, t;
-        
-        v1 = Double.parseDouble(txtvalor1.getText());
-        v2 = Double.parseDouble(txtvalor2.getText());
-        
-        op = v1 - v2;
-        
-        op2 = op * 1.20;
-        
-        txtresultado.setText(String.valueOf(op2));
-        
-        
+
+        if (txtvalor1.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor ingrese su saldo inicial", "Error", JOptionPane.ERROR_MESSAGE);
+            txtvalor1.requestFocusInWindow();
+            txtvalor1.selectAll();
+        } else if (txtvalor2.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor ingrese su saldo final", "Error", JOptionPane.ERROR_MESSAGE);
+            txtvalor2.requestFocusInWindow();
+            txtvalor2.selectAll();
+        } else {
+
+            v1 = Double.parseDouble(txtvalor1.getText());
+            v2 = Double.parseDouble(txtvalor2.getText());
+
+            if (v1 == 0) {
+                JOptionPane.showMessageDialog(this, "Ingrese un saldo diferente de 0", "Error", JOptionPane.ERROR_MESSAGE);
+                txtvalor1.requestFocusInWindow();
+                txtvalor1.selectAll();
+            } else if (v2 == 0) {
+                JOptionPane.showMessageDialog(this, "Digite un saldo que no sea 0", "Error", JOptionPane.ERROR_MESSAGE);
+                txtvalor2.requestFocusInWindow();
+                txtvalor2.selectAll();
+            } else {
+
+                op = v1 - v2;
+
+                op2 = op * 1.20;
+
+                txtresultado.setText(String.valueOf(op2));
+            }
+        }
     }//GEN-LAST:event_cmdcalcularActionPerformed
+
+    private void txtvalor1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtvalor1KeyTyped
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+
+    }//GEN-LAST:event_txtvalor1KeyTyped
+
+    private void txtvalor2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtvalor2KeyTyped
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtvalor2KeyTyped
 
     /**
      * @param args the command line arguments
