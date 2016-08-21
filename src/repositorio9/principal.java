@@ -159,7 +159,8 @@ public class principal extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Digite un saldo que no sea 0", "Error", JOptionPane.ERROR_MESSAGE);
                 txtvalor2.requestFocusInWindow();
                 txtvalor2.selectAll();
-            } else {
+            }
+            {
 
                 op = v1 - v2;
 
